@@ -1,0 +1,13 @@
+<launch>
+  <!-- run rviz -->
+  <node type="rviz" name="rviz" pkg="rviz"/>
+  <!-- get pepper robot urdf -->
+  <include file="$(find pepper_description)/launch/pepper_upload.launch" />  
+  <!-- create a connection between base_link frame of pepper robot to world frame -->
+  <node name="world_base" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 world base_link 1" />
+  <!-- publishes all the tf transforms of pepper robot based on its URDF file -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <!-- collects the data for the model -->
+  <node name="ros_data_collector" type="collect_data.py" pkg="joint_converter" output="screen"/>
+
+</launch>

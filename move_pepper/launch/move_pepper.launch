@@ -1,0 +1,29 @@
+<launch>
+  <!-- define args -->
+  <arg name="only_sim" default="true"/>
+  <arg name="use_bag" default="true" />
+
+  <!-- run joint converter package -->
+  <include file="$(find joint_converter)/launch/joint_converter.launch">
+    <arg name="use_bag" value="$(arg use_bag)"/>
+  </include>
+
+  <!-- run main code to move pepper -->
+  <node name="ros_move_pepper" type="pepper_move.py" pkg="move_pepper" output="screen">
+    <param name="only_sim" value="$(arg only_sim)"/>
+  </node>
+
+  <!-- get pepper robot urdf -->
+  <include file="$(find pepper_description)/launch/pepper_upload.launch" />  
+  <!-- create a connection between base_link frame of pepper robot to world frame -->
+  <node name="world_base" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 world base_link 1" />
+  <!-- publishes all the tf transforms of pepper robot based on its URDF file -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+  <!-- run rviz -->
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find move_pepper)/config/pepper.rviz"/>
+
+</launch>
+
+
+

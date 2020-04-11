@@ -1,0 +1,18 @@
+<launch>
+	<arg name="use_bag" default="true" />
+	<arg name="bag_path" default="/home/kevinh/Documents/emotion/anger.bag" />
+	<arg name="bag_playback_rate" default="1"/>
+	<arg name="model_dir" default="$(find joint_converter)/models" />
+
+    <!-- run nuitrack (skeleton-tracking) or run a rosbag-->
+    <node if="$(arg use_bag)" pkg="rosbag" type="play" name="player" args="--loop --clock --rate $(arg bag_playback_rate) $(arg bag_path)"/>
+    <include unless="$(arg use_bag)" file="$(find nuitrack_body_tracker)/launch/nuitrack_body_tracker.launch" />
+
+    <!-- create a world tf 												x y z y p r-->
+  	<node pkg="tf" type="static_transform_publisher" name="world" args="0 0 0 0 -1.57 -1.57 /nuitrack_camera_link /world 1"/>
+
+    <!-- run main code to publish pepper joints angles-->
+    <node name="ros_joint_converter" type="convert_joint.py" pkg="joint_converter" output="screen">
+    	<param name="model_dir" value="$(arg model_dir)"/>
+    </node>
+</launch>
