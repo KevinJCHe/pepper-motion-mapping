@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from sensor_msgs.msg import JointState
 
-class joint_spec(object):
+class JointSpec(object):
     """
     peppper specificiations: 
         - http://doc.aldebaran.com/2-4/family/pepper_technical/links_pep.html

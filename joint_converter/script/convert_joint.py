@@ -14,7 +14,6 @@ import torch.nn as nn
 import pepper_kinematics as pk
 import math
 import numpy as np
-import pandas as pd
 
 from spec import JointSpec
 

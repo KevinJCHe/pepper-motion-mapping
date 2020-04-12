@@ -5,7 +5,8 @@ Supports
 - real-time motion mapping
 - motion mapping from a recorded ros bag (topic of interest is /body_tracker/skeleton_v2). 
 
-Tested on Ubuntu 16.04 with Microsft Kinect Sensor v1.
+Tested on Ubuntu 16.04 with Microsft Kinect Sensor v1. 
+Currently does not work for Ubuntu 18.04 due to unsupported dependencies. 
 
 # Installation
 1. Install Nuitrack Linux Drivers
@@ -32,8 +33,9 @@ Tested on Ubuntu 16.04 with Microsft Kinect Sensor v1.
 
         sudo apt-get install ros-kinetic-pepper-.*
         pip install torch==1.4.0+cpu torchvision==0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+        pip install pepper_kinematics
         pip install future
-        git clone https://github.com/sugarsweetrobotics/python_pepper_kinematics.git
+        pip install pandas
 
 # Using the ROS package
 
