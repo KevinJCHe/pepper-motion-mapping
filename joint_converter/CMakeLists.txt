@@ -12,11 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   joint_converter_msgs
-  freenect_launch
-  moveit_core
-  moveit_visual_tools
-  moveit_ros_planning
-  moveit_ros_planning_interface
 )
 
 ## System dependencies are found with CMake's conventions
@@ -116,11 +111,6 @@ catkin_package(
 		rospy 
 		std_msgs 
 		joint_converter_msgs
-		freenect_launch
-		moveit_core
-		moveit_visual_tools
-		moveit_ros_planning
-		moveit_ros_planning_interface
 #  DEPENDS system_lib
 )
 
