@@ -25,7 +25,7 @@ Currently does not work for Ubuntu 18.04 due to unsupported dependencies.
 
 4. Clone the following repo into your catkin workspace
 
-		git clone https://gitlab.com/KevinJCHe22/motion-capture.git
+		git clone https://gitlab.com/asblab/motion-capture.git
 
 	*Make sure to edit line 9 in the CMakeLists.txt file in nuitrack_body_tracker: set(NUITRACK_SDK_PATH /path/to/NuitrackSDK)*
 
