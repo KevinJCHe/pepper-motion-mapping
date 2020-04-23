@@ -43,10 +43,10 @@ Currently does not work for Ubuntu 18.04 due to unsupported dependencies.
 
 Optional command line arguments: 
 - `only_sim:=<true or false, default is true. If false, it will connect with the phyiscal Pepper robot>`
-- `use_bag:=<true of false, default is true. If false, real time video stream will be used instead of a recorded ros bag>`
-**NOTE**: make sure you have an RGBD sensor connected to your device if use_bag:=false
+- `use_bag:=<happy, sad, angry, surprise, fear, disgust, default is None. If None, real time video stream will be used instead of a recorded ros bag>`
+**NOTE**: make sure you have an RGBD sensor connected to your device if use_bag:=None
 
 Additional argument changes can be made in the joint_convert.launch file:
-- `<arg name="bag_path" default="/path/to/rosbag" />`
+- `<arg name="<emotion>_bag_path" default="/path/to/rosbag" />`
 - `<arg name="bag_playback_rate" default="1"/>`
 - `<arg name="model_dir" default="$(find joint_converter)/models" />`

@@ -1,12 +1,28 @@
 <launch>
-	<arg name="use_bag" default="true" />
-	<arg name="bag_path" default="/home/kevinh/Documents/emotion/anger.bag" />
+	<arg name="use_bag" default="None" />
+	<arg name="happy_bag_path" default="/home/kevinh/Documents/emotion/happy.bag" />
+    <arg name="sad_bag_path" default="/home/kevinh/Documents/emotion/sad.bag" />
+    <arg name="angry_bag_path" default="/home/kevinh/Documents/emotion/angry.bag" />
+    <arg name="disgust_bag_path" default="/home/kevinh/Documents/emotion/disgust.bag" />
+    <arg name="fear_bag_path" default="/home/kevinh/Documents/emotion/fear.bag" />
+    <arg name="surprise_bag_path" default="/home/kevinh/Documents/emotion/surprise.bag" />
 	<arg name="bag_playback_rate" default="1"/>
 	<arg name="model_dir" default="$(find joint_converter)/models" />
 
     <!-- run nuitrack (skeleton-tracking) or run a rosbag-->
-    <node if="$(arg use_bag)" pkg="rosbag" type="play" name="player" args="--loop --clock --rate $(arg bag_playback_rate) $(arg bag_path)"/>
-    <include unless="$(arg use_bag)" file="$(find nuitrack_body_tracker)/launch/nuitrack_body_tracker.launch" />
+    <node if="$(eval use_bag == 'happy')" pkg="rosbag" type="play" name="player" 
+          args="--loop --clock --rate $(arg bag_playback_rate) $(arg happy_bag_path)"/>
+    <node if="$(eval use_bag == 'sad')" pkg="rosbag" type="play" name="player" 
+          args="--loop --clock --rate $(arg bag_playback_rate) $(arg sad_bag_path)"/>
+    <node if="$(eval use_bag == 'angry')" pkg="rosbag" type="play" name="player" 
+          args="--loop --clock --rate $(arg bag_playback_rate) $(arg angry_bag_path)"/>
+    <node if="$(eval use_bag == 'disgust')" pkg="rosbag" type="play" name="player" 
+          args="--loop --clock --rate $(arg bag_playback_rate) $(arg disgust_bag_path)"/>
+    <node if="$(eval use_bag == 'fear')" pkg="rosbag" type="play" name="player" 
+          args="--loop --clock --rate $(arg bag_playback_rate) $(arg fear_bag_path)"/>
+    <node if="$(eval use_bag == 'surprise')" pkg="rosbag" type="play" name="player" 
+          args="--loop --clock --rate $(arg bag_playback_rate) $(arg surprise_bag_path)"/>
+    <include if="$(eval use_bag == 'None')" file="$(find nuitrack_body_tracker)/launch/nuitrack_body_tracker.launch" />
 
     <!-- create a world tf 												x y z y p r-->
   	<node pkg="tf" type="static_transform_publisher" name="world" args="0 0 0 0 -1.57 -1.57 /nuitrack_camera_link /world 1"/>

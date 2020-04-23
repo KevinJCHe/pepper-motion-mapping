@@ -1,7 +1,7 @@
 <launch>
   <!-- define args -->
   <arg name="only_sim" default="true"/>
-  <arg name="use_bag" default="true" />
+  <arg name="use_bag" default="None" />
 
   <!-- run joint converter package -->
   <include file="$(find joint_converter)/launch/joint_converter.launch">
