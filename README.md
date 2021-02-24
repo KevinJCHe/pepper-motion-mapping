@@ -1,8 +1,8 @@
 # Pepper motion mapping
 
-![Image](static/images/pic.JPG)
-
 A ROS package to map human motion (captured using the **Nuitrack** skeleton tracking software) to humanoid robot **Pepper**.
+
+![Image](static/images/pic.JPG)
 
 Supports
 - real-time motion mapping
